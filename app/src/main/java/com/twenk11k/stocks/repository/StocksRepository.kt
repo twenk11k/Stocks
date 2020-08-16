@@ -9,8 +9,6 @@ import com.skydoves.whatif.whatIfNotNull
 import com.twenk11k.stocks.model.HandshakeRequest
 import com.twenk11k.stocks.model.StocksRequest
 import com.twenk11k.stocks.network.StocksClient
-import com.twenk11k.stocks.util.Utils.encrypt
-import com.twenk11k.stocks.util.Utils.encrypt1
 import com.twenk11k.stocks.util.Utils.encryptResponse
 import com.twenk11k.stocks.util.Utils.getDeviceId
 import com.twenk11k.stocks.util.Utils.getDeviceModel
@@ -40,7 +38,7 @@ class StocksRepository @Inject constructor(
 
                 val period = encryptResponse("all",response.aesKey, response.aesIV)
                 val stocksRequest = StocksRequest(period)
-                val stocksResponse = stocksClient.fethchStocksAndIndicesResponse(response.authorization, stocksRequest)
+                val stocksResponse = stocksClient.fetchStocksResponse(response.authorization, stocksRequest)
                 stocksResponse.suspendOnSuccess {
                     data.whatIfNotNull {
                         Log.d("StockRepo", "inner: $it")

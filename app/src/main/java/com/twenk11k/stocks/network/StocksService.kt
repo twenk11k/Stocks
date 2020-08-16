@@ -17,7 +17,7 @@ interface StocksService {
     ): ApiResponse<HandshakeResponse>
 
     @POST("/api/stocks/list")
-    suspend fun fethchStocksAndIndicesResponse(
+    suspend fun fetchStocksResponse(
         @Header("X-VP-Authorization") authorization: String,
         @Body body: StocksRequest
     ): ApiResponse<StocksResponse>

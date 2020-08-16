@@ -38,7 +38,7 @@ object Utils {
     }
 
     private fun capitalize(s: String): String {
-        if (s == null || s.length == 0) {
+        if (s.isEmpty()) {
             return ""
         }
         val first = s[0]

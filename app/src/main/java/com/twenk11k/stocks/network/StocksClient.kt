@@ -9,7 +9,7 @@ class StocksClient @Inject constructor(private val stocksService: StocksService)
     suspend fun fetchHandshakeResponse(handshakeRequest: HandshakeRequest) =
         stocksService.fetchHandshakeResponse(handshakeRequest)
 
-    suspend fun fethchStocksAndIndicesResponse(authorization: String, stocksRequest: StocksRequest) =
-        stocksService.fethchStocksAndIndicesResponse(authorization, stocksRequest)
+    suspend fun fetchStocksResponse(authorization: String, stocksRequest: StocksRequest) =
+        stocksService.fetchStocksResponse(authorization, stocksRequest)
 
 }
