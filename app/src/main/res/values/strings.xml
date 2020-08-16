@@ -10,11 +10,19 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="hisse_ve_endeksler">Hisse ve Endeksler</string>
-    <string name="yükselenler">Yükselenler</string>
+    <string name="yukselenler">Yükselenler</string>
     <string name="dusenler">Düşenler</string>
     <string name="hacme_gore_30">Hacme Göre - 30</string>
     <string name="hacme_gore_50">Hacme Göre - 50</string>
     <string name="hacme_gore_100">Hacme Göre - 100</string>
     <string name="veripark">veripark</string>
+    <string name="symbol">Sembol</string>
+    <string name="price">Fiyat</string>
+    <string name="difference">Fark</string>
+    <string name="volume">Hacim</string>
+    <string name="buying">Alış</string>
+    <string name="selling">Satış</string>
+    <string name="change">Değişim</string>
+    <string name="search">Ara</string>
 
 </resources>

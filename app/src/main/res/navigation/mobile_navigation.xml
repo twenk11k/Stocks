@@ -14,9 +14,8 @@
     <fragment
         android:id="@+id/nav_yukselenler"
         android:name="com.twenk11k.stocks.ui.fragment.FragmentStocks"
-        android:label="@string/yükselenler"
+        android:label="@string/yukselenler"
         tools:layout="@layout/fragment_home" />
-
 
     <fragment
         android:id="@+id/nav_dusenler"

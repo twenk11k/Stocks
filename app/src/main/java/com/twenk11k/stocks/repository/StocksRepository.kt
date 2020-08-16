@@ -23,39 +23,38 @@ class StocksRepository @Inject constructor(
     private val stocksClient: StocksClient
 ) {
 
-    suspend fun requestHandshake() = flow {
+    suspend fun retrieveStocksResponse(periodName: String) = flow {
 
         val deviceId = getDeviceId()
         val systemVersion = getSystemVersion()
-            val platformName = "Android"
+        val platformName = "Android"
         val deviceModel = getDeviceModel()
-        val manifacturer = getManifacturer()
-        Log.d("StockRepo","deviceId: $deviceId , systemVersion: $systemVersion , platformName: $platformName , deviceModel: $deviceModel , manifacturer: $manifacturer")
-        val handshakeRequest = HandshakeRequest(deviceId,systemVersion, platformName, deviceModel, manifacturer)
+        val manufacturer = getManifacturer()
+        val handshakeRequest =
+            HandshakeRequest(deviceId, systemVersion, platformName, deviceModel, manufacturer)
         val response = stocksClient.fetchHandshakeResponse(handshakeRequest)
         response.suspendOnSuccess {
             data.whatIfNotNull { response ->
-
-                val period = encryptResponse("all",response.aesKey, response.aesIV)
+                val period = encryptResponse(periodName, response.aesKey, response.aesIV)
                 val stocksRequest = StocksRequest(period)
-                val stocksResponse = stocksClient.fetchStocksResponse(response.authorization, stocksRequest)
+                val stocksResponse =
+                    stocksClient.fetchStocksResponse(response.authorization, stocksRequest)
                 stocksResponse.suspendOnSuccess {
                     data.whatIfNotNull {
-                        Log.d("StockRepo", "inner: $it")
+                        it.aesKey = response.aesKey
+                        it.aesIv = response.aesIV
+                        emit(it)
                     }
                 }.onError {
-                    Log.e("StockRepo","errorStocksResponse: ${message()}")
+                    Log.e("StockRepo", "errorStocksResponse: ${message()}")
                 }.onException {
-                    Log.e("StockRepo","exceptionStocksResponse: ${message()}")
+                    Log.e("StockRepo", "exceptionStocksResponse: ${message()}")
                 }
-
-                Log.d("StockRepo",response.toString())
-                emit(response)
             }
         }.onError {
-            Log.e("StockRepo","error: ${message()}")
+            Log.e("StockRepo", "error: ${message()}")
         }.onException {
-            Log.e("StockRepo","exception: ${message()}")
+            Log.e("StockRepo", "exception: ${message()}")
         }
 
     }.flowOn(Dispatchers.IO)

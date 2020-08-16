@@ -5,6 +5,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class StocksResponse(
-    @field:Json(name = "stocks") val stocks: List<Stocks>,
-    @field:Json(name = "status") val status: Status
+    @field:Json(name = "stocks") val stocks: List<Stock>,
+    @field:Json(name = "status") val status: Status,
+    var aesKey: String = "",
+    var aesIv: String = ""
 )

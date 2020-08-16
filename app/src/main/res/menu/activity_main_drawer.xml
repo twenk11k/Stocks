@@ -9,7 +9,7 @@
             android:title="@string/hisse_ve_endeksler" />
         <item
             android:id="@+id/nav_yukselenler"
-            android:title="@string/yükselenler" />
+            android:title="@string/yukselenler" />
         <item
             android:id="@+id/nav_dusenler"
             android:title="@string/dusenler" />

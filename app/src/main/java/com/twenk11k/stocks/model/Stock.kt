@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-data class Stocks(
+data class Stock(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "isDown") val isDown: Boolean,
     @field:Json(name = "isUp") val isUp: Boolean,
