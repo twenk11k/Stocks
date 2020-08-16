@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.twenk11k.stocks.ui.activity.stocks.StocksActivity
 import com.twenk11k.stocks.R
 import com.twenk11k.stocks.databinding.FragmentStocksBinding
-import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.app_bar_stocks.*
 
 class FragmentStocks: DataBindingFragment() {
 
