@@ -3,6 +3,10 @@ package com.twenk11k.stocks.util
 import android.os.Build
 import android.provider.Settings.Secure
 import com.twenk11k.stocks.App
+import java.security.spec.AlgorithmParameterSpec
+import javax.crypto.Cipher
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
 
 
 object Utils {
@@ -29,8 +33,8 @@ object Utils {
         }
     }
 
-    fun getDeviceModel(): String{
-        return android.os.Build.MODEL.toString()
+    fun getDeviceModel(): String {
+        return Build.MODEL.toString()
     }
 
     private fun capitalize(s: String): String {
@@ -46,7 +50,27 @@ object Utils {
     }
 
     fun getManifacturer(): String {
-        return android.os.Build.MANUFACTURER.toString()
+        return Build.MANUFACTURER.toString()
+    }
+
+    fun encryptResponse(value: String, aesKey: String, aesIv: String): String {
+        try {
+            val key = aesKey.toByteArray()
+            val ivs = aesIv.toByteArray()
+            val cipher = Cipher.getInstance("AES/CBC/PKCS7Padding")
+            val secretKeySpec =
+                SecretKeySpec(android.util.Base64.decode(key, android.util.Base64.DEFAULT), "AES")
+            val paramSpec: AlgorithmParameterSpec =
+                IvParameterSpec(android.util.Base64.decode(ivs, android.util.Base64.DEFAULT))
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, paramSpec)
+            return android.util.Base64.encodeToString(
+                cipher.doFinal(value.toByteArray()),
+                android.util.Base64.DEFAULT
+            )
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return ""
     }
 
 }
