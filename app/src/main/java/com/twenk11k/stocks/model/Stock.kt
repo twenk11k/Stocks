@@ -14,5 +14,5 @@ data class Stock(
     @field:Json(name = "offer") val offer: Float,
     @field:Json(name = "price") val price: Float,
     @field:Json(name = "volume") val volume: Float,
-    @field:Json(name = "symbol") val symbol: String
+    @field:Json(name = "symbol") var symbol: String
     )

@@ -12,11 +12,11 @@ import com.twenk11k.stocks.App
 import com.twenk11k.stocks.R
 import com.twenk11k.stocks.databinding.AdapterItemStocksBinding
 import com.twenk11k.stocks.model.Stock
-import com.twenk11k.stocks.util.Utils.decryptValue
 
-class StocksAdapter(private val context: Context): RecyclerView.Adapter<StocksAdapter.ViewHolder>() {
+class StocksAdapter(private val context: Context, private var listStock: ArrayList<Stock>) :
+    RecyclerView.Adapter<StocksAdapter.ViewHolder>() {
 
-    private val listStock: MutableList<Stock> = mutableListOf()
+
     private var aesKey: String = ""
     private var aesIv: String = ""
 
@@ -41,11 +41,15 @@ class StocksAdapter(private val context: Context): RecyclerView.Adapter<StocksAd
         holder.bind(listStock[holder.adapterPosition])
     }
 
-    fun addListStock(listStock: List<Stock>, aesKey: String, aesIv: String) {
-        this.listStock.clear()
+    fun addListStock(listStock: ArrayList<Stock>, aesKey: String, aesIv: String) {
+        this.listStock = listStock
         this.aesKey = aesKey
         this.aesIv = aesIv
-        this.listStock.addAll(listStock)
+        notifyDataSetChanged()
+    }
+
+    fun filterList(listFiltered: ArrayList<Stock>) {
+        this.listStock = listFiltered
         notifyDataSetChanged()
     }
 
@@ -57,25 +61,36 @@ class StocksAdapter(private val context: Context): RecyclerView.Adapter<StocksAd
         }
 
         fun bind(stock: Stock) {
-            if(adapterPosition % 2 == 1)
-                binding.parentLayout.setBackgroundColor(ContextCompat.getColor(App.getContext(),R.color.gray_2))
+            if (adapterPosition % 2 == 1)
+                binding.parentLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        App.getContext(),
+                        R.color.gray_2
+                    )
+                )
             else
                 binding.parentLayout.setBackgroundColor(Color.WHITE)
 
-            binding.textSymbol.text = decryptValue(stock.symbol,aesKey,aesIv).trim()
+            binding.textSymbol.text = stock.symbol
             binding.textPrice.text = stock.price.toString()
             binding.textDifference.text = stock.difference.toString()
             binding.textPrice.text = stock.price.toString()
-            binding.textVolume.text = stock.volume.toString().subSequence(0,3)
+            binding.textVolume.text = stock.volume.toString().subSequence(0, 3)
             binding.textBuying.text = stock.bId.toString()
             binding.textSelling.text = stock.offer.toString()
 
             val isDown = stock.isDown
-            val imageChangeDrawable = if(isDown) R.drawable.baseline_keyboard_arrow_down_black_18 else R.drawable.baseline_keyboard_arrow_up_black_18
+            val imageChangeDrawable =
+                if (isDown) R.drawable.baseline_keyboard_arrow_down_black_18 else R.drawable.baseline_keyboard_arrow_up_black_18
 
-            binding.imageChange.setImageDrawable(ContextCompat.getDrawable(context,imageChangeDrawable))
+            binding.imageChange.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    imageChangeDrawable
+                )
+            )
 
-            if(isDown)
+            if (isDown)
                 binding.imageChange.setColorFilter(Color.RED)
             else
                 binding.imageChange.setColorFilter(Color.GREEN)
@@ -87,4 +102,5 @@ class StocksAdapter(private val context: Context): RecyclerView.Adapter<StocksAd
         }
 
     }
+
 }

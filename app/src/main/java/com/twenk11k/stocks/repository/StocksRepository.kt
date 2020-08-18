@@ -9,6 +9,7 @@ import com.skydoves.whatif.whatIfNotNull
 import com.twenk11k.stocks.model.HandshakeRequest
 import com.twenk11k.stocks.model.StocksRequest
 import com.twenk11k.stocks.network.StocksClient
+import com.twenk11k.stocks.util.Utils
 import com.twenk11k.stocks.util.Utils.encryptResponse
 import com.twenk11k.stocks.util.Utils.getDeviceId
 import com.twenk11k.stocks.util.Utils.getDeviceModel
@@ -43,6 +44,9 @@ class StocksRepository @Inject constructor(
                     data.whatIfNotNull {
                         it.aesKey = response.aesKey
                         it.aesIv = response.aesIV
+                        for(stock in it.stocks) {
+                            stock.symbol = Utils.decryptValue(stock.symbol, it.aesKey, it.aesIv).trim()
+                        }
                         emit(it)
                     }
                 }.onError {
