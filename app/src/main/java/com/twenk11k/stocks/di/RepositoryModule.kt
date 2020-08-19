@@ -12,7 +12,6 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 @InstallIn(ActivityRetainedComponent::class)
 class RepositoryModule {
 
-
     @Provides
     @ActivityRetainedScoped
     fun proviceStocksRepository(stocksClient: StocksClient): StocksRepository {

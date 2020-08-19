@@ -26,30 +26,8 @@ object Utils {
         return Build.VERSION.SDK_INT.toString()
     }
 
-    fun getDeviceName(): String {
-        val manufacturer = Build.MANUFACTURER
-        val model = Build.MODEL
-        return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {
-            capitalize(model)
-        } else {
-            capitalize(manufacturer) + " " + model
-        }
-    }
-
     fun getDeviceModel(): String {
         return Build.MODEL.toString()
-    }
-
-    private fun capitalize(s: String): String {
-        if (s.isEmpty()) {
-            return ""
-        }
-        val first = s[0]
-        return if (Character.isUpperCase(first)) {
-            s
-        } else {
-            Character.toUpperCase(first).toString() + s.substring(1)
-        }
     }
 
     fun getManufacturer(): String {

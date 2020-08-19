@@ -87,18 +87,14 @@ class StockDetailsActivity : DataBindingActivity() {
         lineChart.description.isEnabled = false
 
         val xAxis = lineChart.xAxis
-        // vertical grid lines
         xAxis.enableGridDashedLine(10f, 10f, 0f)
 
         val yAxis = lineChart.axisLeft
 
-        // disable dual axis (only use LEFT axis)
         lineChart.axisRight.isEnabled = false
 
-        // horizontal grid lines
         yAxis.enableGridDashedLine(10f, 10f, 0f)
 
-        // axis range
         yAxis.axisMaximum = stockDetailsResponse.maximum + stockDetailsResponse.maximum / 10
         yAxis.axisMinimum = stockDetailsResponse.minimum - stockDetailsResponse.minimum / 10
 
@@ -107,6 +103,7 @@ class StockDetailsActivity : DataBindingActivity() {
 
     private fun setLineChartData(stockDetailsResponse: StockDetailsResponse) {
         val values = ArrayList<Entry>()
+
         for (i in stockDetailsResponse.graphicData.indices) {
             val value = stockDetailsResponse.graphicData[i].value.toFloat()
             values.add(Entry(i.toFloat(), value, ContextCompat.getDrawable(this,R.drawable.line_chart_background)))
@@ -124,27 +121,18 @@ class StockDetailsActivity : DataBindingActivity() {
             lineChart.notifyDataSetChanged()
         } else {
             set = LineDataSet(values,"")
-
             set.setDrawIcons(false)
-
             set.enableDashedLine(10f, 5f, 0f)
-
             set.color = Color.BLACK
             set.setCircleColor(Color.BLACK)
-
             set.lineWidth = 1f
             set.circleRadius = 3f
-
             set.setDrawCircleHole(false)
-
             set.formSize = 0f
             set.valueTextSize = 10f
-
             set.enableDashedHighlightLine(10f, 5f, 0f)
-
             set.setDrawFilled(true)
-            set.fillFormatter =
-                IFillFormatter { _, _ -> lineChart.axisLeft.axisMinimum }
+            set.fillFormatter = IFillFormatter { _, _ -> lineChart.axisLeft.axisMinimum }
 
             val drawable = ContextCompat.getDrawable(this, R.drawable.line_chart_background)
             set.fillDrawable = drawable
@@ -183,14 +171,12 @@ class StockDetailsActivity : DataBindingActivity() {
         this.textVolume = binding.textVolume
         this.textBuying = binding.textBuying
         this.textSelling = binding.textSelling
-
         this.textDailyLow = binding.textDailyLow
         this.textDailyHigh = binding.textDailyHigh
         this.textAmount = binding.textAmount
         this.textCeiling = binding.textCeiling
         this.textBase = binding.textBase
         this.imageChange = binding.imageChange
-
         this.lineChart = binding.lineChart
 
         supportActionBar?.title = if(symbol.isNotEmpty()) symbol else getString(R.string.stock_details)

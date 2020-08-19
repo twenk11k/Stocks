@@ -31,7 +31,6 @@ class StocksActivity : DataBindingActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setViews()
-
     }
 
     private fun setViews() {

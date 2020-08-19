@@ -9,36 +9,36 @@
         android:id="@+id/nav_hisse_ve_endeksler"
         android:name="com.twenk11k.stocks.ui.fragment.FragmentStocks"
         android:label="@string/hisse_ve_endeksler"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_stocks" />
 
     <fragment
         android:id="@+id/nav_yukselenler"
         android:name="com.twenk11k.stocks.ui.fragment.FragmentStocks"
         android:label="@string/yukselenler"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_stocks" />
 
     <fragment
         android:id="@+id/nav_dusenler"
         android:name="com.twenk11k.stocks.ui.fragment.FragmentStocks"
         android:label="@string/dusenler"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_stocks" />
 
     <fragment
         android:id="@+id/nav_hacme_gore_30"
         android:name="com.twenk11k.stocks.ui.fragment.FragmentStocks"
         android:label="@string/hacme_gore_30"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_stocks" />
 
     <fragment
         android:id="@+id/nav_hacme_gore_50"
         android:name="com.twenk11k.stocks.ui.fragment.FragmentStocks"
         android:label="@string/hacme_gore_50"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_stocks" />
 
     <fragment
         android:id="@+id/nav_hacme_gore_100"
         android:name="com.twenk11k.stocks.ui.fragment.FragmentStocks"
         android:label="@string/hacme_gore_100"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_stocks" />
 
 </navigation>
