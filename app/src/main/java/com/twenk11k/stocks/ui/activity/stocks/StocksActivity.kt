@@ -65,5 +65,4 @@ class StocksActivity : DataBindingActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-
 }

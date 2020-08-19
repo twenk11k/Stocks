@@ -3,7 +3,6 @@ package com.twenk11k.stocks.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-
 @JsonClass(generateAdapter = true)
 data class Stock(
     @field:Json(name = "id") val id: Int,
@@ -15,4 +14,4 @@ data class Stock(
     @field:Json(name = "price") val price: Float,
     @field:Json(name = "volume") val volume: Float,
     @field:Json(name = "symbol") var symbol: String
-    )
+)

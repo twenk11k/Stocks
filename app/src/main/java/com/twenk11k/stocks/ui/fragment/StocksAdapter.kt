@@ -3,7 +3,6 @@ package com.twenk11k.stocks.ui.fragment
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -16,9 +15,7 @@ import com.twenk11k.stocks.model.Stock
 class StocksAdapter(private val context: Context, private var listStock: ArrayList<Stock>) :
     RecyclerView.Adapter<StocksAdapter.ViewHolder>() {
 
-
-    private var aesKey: String = ""
-    private var aesIv: String = ""
+    private var listener: StocksAdapterClickListener? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,10 +38,12 @@ class StocksAdapter(private val context: Context, private var listStock: ArrayLi
         holder.bind(listStock[holder.adapterPosition])
     }
 
-    fun addListStock(listStock: ArrayList<Stock>, aesKey: String, aesIv: String) {
+    fun setListener(listener: StocksAdapterClickListener) {
+        this.listener = listener
+    }
+
+    fun addListStock(listStock: ArrayList<Stock>) {
         this.listStock = listStock
-        this.aesKey = aesKey
-        this.aesIv = aesIv
         notifyDataSetChanged()
     }
 
@@ -53,12 +52,16 @@ class StocksAdapter(private val context: Context, private var listStock: ArrayLi
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val binding: AdapterItemStocksBinding) :
-        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 
-        init {
-            binding.root.setOnClickListener(this)
-        }
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    inner class ViewHolder(val binding: AdapterItemStocksBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(stock: Stock) {
             if (adapterPosition % 2 == 1)
@@ -95,10 +98,11 @@ class StocksAdapter(private val context: Context, private var listStock: ArrayLi
             else
                 binding.imageChange.setColorFilter(Color.GREEN)
 
-        }
-
-        override fun onClick(p0: View?) {
-
+            binding.root.setOnClickListener {
+                if (listener != null && adapterPosition != RecyclerView.NO_POSITION) {
+                    listener?.onAdapterClick(stock.id, stock.symbol)
+                }
+            }
         }
 
     }

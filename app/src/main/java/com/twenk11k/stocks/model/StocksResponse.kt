@@ -8,5 +8,6 @@ data class StocksResponse(
     @field:Json(name = "stocks") val stocks: List<Stock>,
     @field:Json(name = "status") val status: Status,
     var aesKey: String = "",
-    var aesIv: String = ""
+    var aesIV: String = "",
+    var authorization: String = ""
 )

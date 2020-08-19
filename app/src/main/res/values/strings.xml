@@ -17,12 +17,33 @@
     <string name="hacme_gore_100">Hacme Göre - 100</string>
     <string name="veripark">veripark</string>
     <string name="symbol">Sembol</string>
+    <string name="symbol_colon">Sembol:\u0020</string>
+
     <string name="price">Fiyat</string>
+    <string name="price_colon">Fiyat:\u0020</string>
+
     <string name="difference">Fark</string>
+    <string name="difference_colon">Fark:\u0020</string>
+
     <string name="volume">Hacim</string>
+    <string name="volume_colon">Hacim:\u0020</string>
+
     <string name="buying">Alış</string>
+    <string name="buying_colon">Alış:\u0020</string>
+
     <string name="selling">Satış</string>
+    <string name="selling_colon">Satış:\u0020</string>
+
     <string name="change">Değişim</string>
+    <string name="change_colon">Değişim:\u0020</string>
+
     <string name="search">Ara</string>
+    <string name="search_colon">Ara:\u0020</string>
+    <string name="daily_low_colon">"Günlük Düşük: "</string>
+    <string name="daily_high_colon">"Günlük Yüksek: "</string>
+    <string name="amount_colon">"Adet: "</string>
+    <string name="ceiling_colon">"Tavan: "</string>
+    <string name="base_colon">"Taban: "</string>
+    <string name="stock_details">Stock Details</string>
 
 </resources>

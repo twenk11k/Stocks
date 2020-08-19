@@ -1,112 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
     android:background="@color/gray_3"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    android:padding="8dp">
 
     <TextView
         android:id="@+id/text_symbol"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12ssp"
-        android:maxLines="1"
         android:layout_marginLeft="@dimen/adapter_item_text_margin"
         android:layout_marginRight="@dimen/adapter_item_text_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:text="@string/symbol"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_price"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_price"
-        android:text="@string/symbol" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12ssp"
-        android:maxLines="1"
         android:layout_marginLeft="@dimen/adapter_item_text_margin"
         android:layout_marginRight="@dimen/adapter_item_text_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:text="@string/price"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintEnd_toStartOf="@+id/text_difference"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@id/text_symbol"
-        android:text="@string/price" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_difference"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12ssp"
         android:maxLines="1"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/difference"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintEnd_toStartOf="@+id/text_volume"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/text_price"
-        android:text="@string/difference" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_volume"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12ssp"
-        android:maxLines="1"
         android:layout_marginLeft="@dimen/adapter_item_text_margin"
         android:layout_marginRight="@dimen/adapter_item_text_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:text="@string/volume"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintEnd_toStartOf="@id/text_buying"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/text_difference"
-        android:text="@string/volume" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_buying"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12ssp"
-        android:maxLines="1"
         android:layout_marginLeft="@dimen/adapter_item_text_margin"
         android:layout_marginRight="@dimen/adapter_item_text_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:text="@string/buying"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintEnd_toStartOf="@+id/text_selling"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/text_volume"
-        android:text="@string/buying" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_selling"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12ssp"
-        android:maxLines="1"
         android:layout_marginLeft="@dimen/adapter_item_text_margin"
         android:layout_marginRight="@dimen/adapter_item_text_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:text="@string/selling"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintEnd_toStartOf="@+id/text_change"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/text_buying"
-        android:text="@string/selling" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_change"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_12ssp"
-        android:maxLines="1"
-        android:layout_marginRight="@dimen/adapter_item_text_margin"
         android:layout_marginLeft="@dimen/adapter_item_text_margin"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="@dimen/adapter_item_text_margin"
+        android:maxLines="1"
+        android:text="@string/change"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/text_selling"
-        android:text="@string/change" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

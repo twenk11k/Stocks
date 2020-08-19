@@ -28,6 +28,10 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
 
+        <activity android:name=".ui.activity.stockdetails.StockDetailsActivity"
+            android:label="@string/hisse_ve_endeksler"
+            />
+
     </application>
 
 </manifest>

@@ -43,22 +43,23 @@ class StocksRepository @Inject constructor(
                 stocksResponse.suspendOnSuccess {
                     data.whatIfNotNull {
                         it.aesKey = response.aesKey
-                        it.aesIv = response.aesIV
+                        it.aesIV = response.aesIV
+                        it.authorization = response.authorization
                         for(stock in it.stocks) {
-                            stock.symbol = Utils.decryptValue(stock.symbol, it.aesKey, it.aesIv).trim()
+                            stock.symbol = Utils.decryptValue(stock.symbol, it.aesKey, it.aesIV).trim()
                         }
                         emit(it)
                     }
                 }.onError {
-                    Log.e("StockRepo", "errorStocksResponse: ${message()}")
+                    Log.e(javaClass.simpleName, "errorStocksResponse: ${message()}")
                 }.onException {
-                    Log.e("StockRepo", "exceptionStocksResponse: ${message()}")
+                    Log.e(javaClass.simpleName, "exceptionStocksResponse: ${message()}")
                 }
             }
         }.onError {
-            Log.e("StockRepo", "error: ${message()}")
+            Log.e(javaClass.simpleName, "error: ${message()}")
         }.onException {
-            Log.e("StockRepo", "exception: ${message()}")
+            Log.e(javaClass.simpleName, "exception: ${message()}")
         }
 
     }.flowOn(Dispatchers.IO)

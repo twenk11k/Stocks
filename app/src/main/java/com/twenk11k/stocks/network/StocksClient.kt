@@ -1,6 +1,7 @@
 package com.twenk11k.stocks.network
 
 import com.twenk11k.stocks.model.HandshakeRequest
+import com.twenk11k.stocks.model.StockDetailsRequest
 import com.twenk11k.stocks.model.StocksRequest
 import javax.inject.Inject
 
@@ -11,5 +12,8 @@ class StocksClient @Inject constructor(private val stocksService: StocksService)
 
     suspend fun fetchStocksResponse(authorization: String, stocksRequest: StocksRequest) =
         stocksService.fetchStocksResponse(authorization, stocksRequest)
+
+    suspend fun fetchStockDetailsResponse(authorization: String, stockDetailsRequest: StockDetailsRequest) =
+        stocksService.fetchStockDetailsResponse(authorization, stockDetailsRequest)
 
 }

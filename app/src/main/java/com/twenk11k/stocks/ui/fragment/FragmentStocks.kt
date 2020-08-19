@@ -1,9 +1,9 @@
 package com.twenk11k.stocks.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +18,7 @@ import com.twenk11k.stocks.R
 import com.twenk11k.stocks.databinding.FragmentStocksBinding
 import com.twenk11k.stocks.extension.gone
 import com.twenk11k.stocks.model.Stock
+import com.twenk11k.stocks.ui.activity.stockdetails.StockDetailsActivity
 import com.twenk11k.stocks.ui.activity.stocks.StocksActivity
 import com.twenk11k.stocks.util.Utils.getPeriodName
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,10 @@ class FragmentStocks : DataBindingFragment() {
 
     private var listStocks = arrayListOf<Stock>()
     private lateinit var adapterStocks: StocksAdapter
+
+    private var aesKey: String = ""
+    private var aesIV: String = ""
+    private var authorization: String = ""
 
     private lateinit var binding: FragmentStocksBinding
 
@@ -53,12 +58,13 @@ class FragmentStocks : DataBindingFragment() {
                     progressBar.gone()
                     listStocks.clear()
                     listStocks.addAll(it.stocks)
-                    adapterStocks.addListStock(listStocks, it.aesKey, it.aesIv)
+                    aesKey = it.aesKey
+                    aesIV = it.aesIV
+                    authorization = it.authorization
+                    adapterStocks.addListStock(listStocks)
                 }
-                Log.d("FragmentStocks", it.toString())
             })
         }
-        Log.d("FragmentStocks", periodName)
         return binding.root
     }
 
@@ -79,7 +85,6 @@ class FragmentStocks : DataBindingFragment() {
             override fun onTextChanged(s: CharSequence, p1: Int, p2: Int, p3: Int) {
                 if (getTextEditText() != s) {
                     filterList(s.toString())
-                    Log.d("asfasf","it's changed: $s")
                 }
             }
 
@@ -103,11 +108,26 @@ class FragmentStocks : DataBindingFragment() {
 
     private fun setAdapter() {
         adapterStocks = StocksAdapter(requireContext(), listStocks)
+        adapterStocks.setListener(object : StocksAdapterClickListener {
+            override fun onAdapterClick(id: Int, symbol: String) {
+                startStockDetailsActivity(id, symbol)
+            }
+        })
     }
 
     private fun setRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapterStocks
+    }
+
+    private fun startStockDetailsActivity(id: Int, symbol: String) {
+        val intent = Intent(requireActivity(), StockDetailsActivity::class.java)
+        intent.putExtra("id", id)
+        intent.putExtra("symbol", symbol)
+        intent.putExtra("aesKey", aesKey)
+        intent.putExtra("aesIV", aesIV)
+        intent.putExtra("authorization", authorization)
+        startActivity(intent)
     }
 
 }

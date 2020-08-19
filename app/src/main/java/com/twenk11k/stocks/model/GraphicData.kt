@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Error(
-    @field:Json(name = "code") val code: Int,
-    @field:Json(name = "message") val message: String
+data class GraphicData(
+    @field:Json(name = "day") val day: Int,
+    @field:Json(name = "value") val value: Double
 )
