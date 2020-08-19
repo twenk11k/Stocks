@@ -6,6 +6,8 @@ import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
 import com.skydoves.whatif.whatIfNotNull
+import com.twenk11k.stocks.App
+import com.twenk11k.stocks.R
 import com.twenk11k.stocks.model.HandshakeRequest
 import com.twenk11k.stocks.model.StocksRequest
 import com.twenk11k.stocks.network.StocksClient
@@ -13,7 +15,7 @@ import com.twenk11k.stocks.util.Utils
 import com.twenk11k.stocks.util.Utils.encryptResponse
 import com.twenk11k.stocks.util.Utils.getDeviceId
 import com.twenk11k.stocks.util.Utils.getDeviceModel
-import com.twenk11k.stocks.util.Utils.getManifacturer
+import com.twenk11k.stocks.util.Utils.getManufacturer
 import com.twenk11k.stocks.util.Utils.getSystemVersion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
@@ -28,9 +30,9 @@ class StocksRepository @Inject constructor(
 
         val deviceId = getDeviceId()
         val systemVersion = getSystemVersion()
-        val platformName = "Android"
+        val platformName = App.getContext().getString(R.string.android)
         val deviceModel = getDeviceModel()
-        val manufacturer = getManifacturer()
+        val manufacturer = getManufacturer()
         val handshakeRequest =
             HandshakeRequest(deviceId, systemVersion, platformName, deviceModel, manufacturer)
         val response = stocksClient.fetchHandshakeResponse(handshakeRequest)
@@ -51,15 +53,15 @@ class StocksRepository @Inject constructor(
                         emit(it)
                     }
                 }.onError {
-                    Log.e(javaClass.simpleName, "errorStocksResponse: ${message()}")
+                    Log.e(javaClass.simpleName, "onError: ${message()}")
                 }.onException {
-                    Log.e(javaClass.simpleName, "exceptionStocksResponse: ${message()}")
+                    Log.e(javaClass.simpleName, "onException: ${message()}")
                 }
             }
         }.onError {
-            Log.e(javaClass.simpleName, "error: ${message()}")
+            Log.e(javaClass.simpleName, "onError: ${message()}")
         }.onException {
-            Log.e(javaClass.simpleName, "exception: ${message()}")
+            Log.e(javaClass.simpleName, "onException: ${message()}")
         }
 
     }.flowOn(Dispatchers.IO)

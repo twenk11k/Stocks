@@ -45,5 +45,6 @@
     <string name="ceiling_colon">"Tavan: "</string>
     <string name="base_colon">"Taban: "</string>
     <string name="stock_details">Stock Details</string>
+    <string name="android">Android</string>
 
 </resources>

@@ -34,9 +34,9 @@ class StockDetailsRepository @Inject constructor(
                 emit(it)
             }
         }.onError {
-            Log.e(javaClass.simpleName, "errorStocksResponse: ${message()}")
+            Log.e(javaClass.simpleName, "onError: ${message()}")
         }.onException {
-            Log.e(javaClass.simpleName, "exceptionStocksResponse: ${message()}")
+            Log.e(javaClass.simpleName, "onException: ${message()}")
         }
     }.flowOn(Dispatchers.IO)
 

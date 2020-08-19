@@ -1,7 +1,6 @@
 package com.twenk11k.stocks.ui.activity.stockdetails
 
 import android.graphics.Color
-import android.graphics.DashPathEffect
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -113,48 +112,45 @@ class StockDetailsActivity : DataBindingActivity() {
             values.add(Entry(i.toFloat(), value, ContextCompat.getDrawable(this,R.drawable.line_chart_background)))
         }
 
-        val set1: LineDataSet
+        val set: LineDataSet
 
         if (lineChart.data != null &&
             lineChart.data.dataSetCount > 0
         ) {
-            set1 = lineChart.data.getDataSetByIndex(0) as LineDataSet
-            set1.values = values
-            set1.notifyDataSetChanged()
+            set = lineChart.data.getDataSetByIndex(0) as LineDataSet
+            set.values = values
+            set.notifyDataSetChanged()
             lineChart.data.notifyDataChanged()
             lineChart.notifyDataSetChanged()
         } else {
-            set1 = LineDataSet(values,"")
+            set = LineDataSet(values,"")
 
-            set1.setDrawIcons(false)
+            set.setDrawIcons(false)
 
-            set1.enableDashedLine(10f, 5f, 0f)
+            set.enableDashedLine(10f, 5f, 0f)
 
-            set1.color = Color.BLACK
-            set1.setCircleColor(Color.BLACK)
+            set.color = Color.BLACK
+            set.setCircleColor(Color.BLACK)
 
-            set1.lineWidth = 1f
-            set1.circleRadius = 3f
+            set.lineWidth = 1f
+            set.circleRadius = 3f
 
-            set1.setDrawCircleHole(false)
+            set.setDrawCircleHole(false)
 
-            set1.formLineWidth = 1f
-            set1.formLineDashEffect = DashPathEffect(floatArrayOf(10f, 5f), 0f)
-            set1.formSize = 0f
+            set.formSize = 0f
+            set.valueTextSize = 10f
 
-            set1.valueTextSize = 9f
+            set.enableDashedHighlightLine(10f, 5f, 0f)
 
-            set1.enableDashedHighlightLine(10f, 5f, 0f)
-
-            set1.setDrawFilled(true)
-            set1.fillFormatter =
+            set.setDrawFilled(true)
+            set.fillFormatter =
                 IFillFormatter { _, _ -> lineChart.axisLeft.axisMinimum }
 
             val drawable = ContextCompat.getDrawable(this, R.drawable.line_chart_background)
-            set1.fillDrawable = drawable
+            set.fillDrawable = drawable
 
             val dataSets = ArrayList<ILineDataSet>()
-            dataSets.add(set1)
+            dataSets.add(set)
 
             val data = LineData(dataSets)
 
